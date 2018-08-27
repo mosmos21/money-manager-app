@@ -24,10 +24,24 @@ export default class MoneyManagerApp extends React.Component {
       year: 2018,
       month: 8,
 
-      data: { },
+      data: {
+        // 検証用
+        "201808" : {
+          'budget': {
+            'food': 30000,
+            'sundry': 5000,
+            'relationship': 20000,
+            'entertainment': 30000,
+            'other': 15000,
+          },
+          'performance': []
+        }
+      },
     };
     this.handleInput = this.handleInput.bind(this);
+    this.handleSelectDate = this.handleSelectDate.bind(this);
     this.setBudget = this.setBudget.bind(this);
+    this.addPerformance = this.addPerformance.bind(this);
   }
 
   isSetBudget() {
@@ -37,6 +51,10 @@ export default class MoneyManagerApp extends React.Component {
 
   handleInput(e) {
     this.setState({ [e.target.name] : e.target.value });
+  }
+
+  handleSelectDate(date) {
+    this.setState({ dateInput: date.format('YYYY/MM/DD')});
   }
 
   setBudget() {
@@ -65,7 +83,7 @@ export default class MoneyManagerApp extends React.Component {
 
   addPerformance() {
     const key =`${this.state.year}${('0' + this.state.month).slice(-2)}`;
-    console.log(key);
+    console.log(key, this.state.dateInput, this.state.categoryInput, this.state.performanceInput);
   }
 
   render() {
@@ -83,7 +101,11 @@ export default class MoneyManagerApp extends React.Component {
               <PerformanceForm
                 year={this.state.year}
                 month={this.state.month}
-                addPerformanace={this.addPerformance} /> }
+                dateInput={this.state.dateInput}
+                categoryInput={this.state.categoryInput}
+                handleInput={this.handleInput}
+                handleSelectDate={this.handleSelectDate}
+                addPerformance={this.addPerformance} /> }
           </div>
           <div className="overview">
             <div className="overviewHeader">
