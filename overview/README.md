@@ -14,19 +14,19 @@
 
 ```json
 {
-    "201808": {                     /* キーは年(4桁)+月(2桁) */
-        "budget": {                 /* 予算(未登録の場合はundefined) */
-            "food": 1000,           /* 食費 */
-            "sundry": 1000,         /* 雑費 */
-            "relationship": 1000,   /* 交際費 */
-            "entertainment": 1000,  /* その他 */
+    "201808": {
+        "budget": {
+            "food": 1000,
+            "sundry": 1000,
+            "relationship": 1000,
+            "entertainment": 1000,
             "other": 1000
         },
-        "performance" : [           /* 実績(実績未登録の場合、長さ0の配列) */
+        "performance" : [
             {
-                "date": "2018/08/01", /*実績の日付 */
-                "category": "food",   /* 実績のカテゴリ */
-                "perf": 1000          /* 実績の金額 */
+                "date": "2018/08/01",
+                "category": "food",
+                "perf": 1000
             }
         ]  
     }
