@@ -34,7 +34,7 @@ export default class MoneyManagerApp extends React.Component {
             'entertainment': 30000,
             'other': 15000,
           },
-          'performance': []
+          'performances': []
         }
       },
     };
@@ -70,7 +70,7 @@ export default class MoneyManagerApp extends React.Component {
             'entertainment': this.state.entertainmentInput,
             'other': this.state.otherInput,
           },
-          'performance': []
+          'performances': []
         },
       },
       foodInput: 0,
@@ -83,7 +83,23 @@ export default class MoneyManagerApp extends React.Component {
 
   addPerformance() {
     const key =`${this.state.year}${('0' + this.state.month).slice(-2)}`;
-    console.log(key, this.state.dateInput, this.state.categoryInput, this.state.performanceInput);
+    this.setState(prevState => ({
+      data : {
+        [key] : {
+          'budget' : {
+            ...prevState.data[key]['budget'],
+          },
+          'performances': prevState.data[key]['performances'].concat({
+            'date': this.state.dateInput,
+            'category' : this.state.categoryInput,
+            'performance': this.state.performanceInput
+          })
+        }
+      },
+      dateInput : '',
+      categoryInput: '',
+      performanceInput: 0
+    }));
   }
 
   render() {
@@ -103,6 +119,7 @@ export default class MoneyManagerApp extends React.Component {
                 month={this.state.month}
                 dateInput={this.state.dateInput}
                 categoryInput={this.state.categoryInput}
+                performanceInput={this.state.performanceInput}
                 handleInput={this.handleInput}
                 handleSelectDate={this.handleSelectDate}
                 addPerformance={this.addPerformance} /> }

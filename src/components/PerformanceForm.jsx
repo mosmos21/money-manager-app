@@ -23,7 +23,7 @@ const styles = theme => ({
 });
 
 const PerformanceForm = props => {
-  const { classes, year, month, dateInput, categoryInput, handleInput, handleSelectDate, addPerformance } = props;
+  const { classes, year, month, dateInput, categoryInput, performanceInput, handleInput, handleSelectDate, addPerformance } = props;
   const minDate = moment({year: year, month: month - 1, date: 1});
   const maxDate = moment({year: year + month / 12, month: month % 12, date: 1}).subtract(1, 'd');
   return (
@@ -58,6 +58,7 @@ const PerformanceForm = props => {
 
       <TextField
         name="performanceInput"
+        value={performanceInput}
         label="実績額"
         onChange={handleInput}
         margin="normal"/>
