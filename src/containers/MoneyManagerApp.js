@@ -46,11 +46,20 @@ export default class MoneyManagerApp extends React.Component {
         ...prevState.data,
         [key] : {
           'budget': {
-
+            'food': this.state.foodInput,
+            'sundry': this.state.sundryInput,
+            'relationship': this.state.relationshipInput,
+            'entertainment': this.state.entertainmentInput,
+            'other': this.state.otherInput,
           },
           'performance': []
         },
-      }
+      },
+      foodInput: 0,
+      sundryInput: 0,
+      relationshipInput: 0,
+      entertainmentInput: 0,
+      otherInput: 0,
     }));
   }
 
