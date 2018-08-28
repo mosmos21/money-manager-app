@@ -2,8 +2,10 @@ import React from 'react';
 import {withStyles} from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
 import SumOverview from "./SumOverview";
+import PerformanceRatio from "./PerformanceRatio";
+import Difference from "./Difference";
+import PerformanceDetail from "./PerformanceDetail";
 
 const styles = theme => ({
   grid: {
@@ -20,7 +22,7 @@ const getBudgetSum = data => Object.values(data).reduce((sum, val) => sum + val,
 const getPerformanceSum = data => data.map(val => val['performance']).reduce((sum, val) => sum + val, 0);
 
 const Overview = props => {
-  const {classes, year, month, data} = props;
+  const {classes, year, month, data, handleClick} = props;
   return (
     <Grid container spacing={24}>
       <Grid item xs={6}>
@@ -35,19 +37,17 @@ const Overview = props => {
       </Grid>
       <Grid item xs={6}>
         <Paper className={classes.paper}>
-          <Typography valiant="title" color="inherit">
-            実績内訳
-          </Typography>
+          <PerformanceRatio/>
         </Paper>
       </Grid>
       <Grid item xs={6}>
         <Paper className={classes.paper}>
-          予実の差
+          <Difference/>
         </Paper>
       </Grid>
       <Grid item xs={6}>
         <Paper className={classes.paper}>
-          日別実績
+          <PerformanceDetail handleClick={handleClick}/>
         </Paper>
       </Grid>
     </Grid>

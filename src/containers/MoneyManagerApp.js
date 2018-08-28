@@ -41,6 +41,7 @@ export default class MoneyManagerApp extends React.Component {
     };
     this.handleInput = this.handleInput.bind(this);
     this.handleSelectDate = this.handleSelectDate.bind(this);
+    this.handleClick = this.handleClick.bind(this);
     this.setBudget = this.setBudget.bind(this);
     this.addPerformance = this.addPerformance.bind(this);
   }
@@ -60,6 +61,10 @@ export default class MoneyManagerApp extends React.Component {
 
   handleSelectDate(date) {
     this.setState({ dateInput: date.format('YYYY/MM/DD')});
+  }
+
+  handleClick(e) {
+    console.log(e);
   }
 
   setBudget() {
@@ -138,6 +143,7 @@ export default class MoneyManagerApp extends React.Component {
                 year={this.state.year}
                 month={this.state.month}
                 data={this.state.data[this.getKey()]}
+
               />
             </div>
           </div>

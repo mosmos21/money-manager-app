@@ -4,10 +4,11 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^1.5.1",
-    "material-ui-number-input": "^5.0.24",
+    "chart.js": "^2.7.2",
     "moment": "^2.22.2",
     "prop-types": "^15.6.2",
     "react": "^16.4.2",
+    "react-chartjs-2": "^2.7.4",
     "react-datepicker": "^1.6.0",
     "react-dom": "^16.4.2",
     "react-scripts": "1.1.5"
