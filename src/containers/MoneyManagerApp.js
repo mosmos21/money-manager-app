@@ -4,6 +4,7 @@ import './MoneyManagerApp.css';
 import OverViewSelector from "../components/OverviewSelector";
 import BudgetForm from "../components/BudgetForm";
 import PerformanceForm from "../components/PerformanceForm";
+import Overview from "../components/Overview";
 
 export default class MoneyManagerApp extends React.Component {
   constructor(props) {
@@ -43,9 +44,13 @@ export default class MoneyManagerApp extends React.Component {
     this.setBudget = this.setBudget.bind(this);
     this.addPerformance = this.addPerformance.bind(this);
   }
+  
+  getKey() {
+    return `${this.state.year}${('0' + this.state.month).slice(-2)}`;
+  }
 
   isSetBudget() {
-    const key = `${this.state.year}${('0' + this.state.month).slice(-2)}`;
+    const key = this.getKey();
     return !this.state.data[key];
   }
 
@@ -58,7 +63,7 @@ export default class MoneyManagerApp extends React.Component {
   }
 
   setBudget() {
-    const key =`${this.state.year}${('0' + this.state.month).slice(-2)}`;
+    const key = this.getKey();
     this.setState(prevState => ({
       data: {
         ...prevState.data,
@@ -82,7 +87,7 @@ export default class MoneyManagerApp extends React.Component {
   }
 
   addPerformance() {
-    const key =`${this.state.year}${('0' + this.state.month).slice(-2)}`;
+    const key = this.getKey();
     this.setState(prevState => ({
       data : {
         [key] : {
@@ -92,7 +97,7 @@ export default class MoneyManagerApp extends React.Component {
           'performances': prevState.data[key]['performances'].concat({
             'date': this.state.dateInput,
             'category' : this.state.categoryInput,
-            'performance': this.state.performanceInput
+            'performance': Number(this.state.performanceInput)
           })
         }
       },
@@ -129,7 +134,11 @@ export default class MoneyManagerApp extends React.Component {
               <OverViewSelector year={this.state.year} month={this.state.month} />
             </div>
             <div className="overviewContent">
-
+              <Overview
+                year={this.state.year}
+                month={this.state.month}
+                data={this.state.data[this.getKey()]}
+              />
             </div>
           </div>
         </div>
