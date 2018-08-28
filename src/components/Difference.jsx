@@ -35,6 +35,9 @@ const options = {
     text: '予実の差',
     fontSize: 18
   },
+  scales: {
+    yAxes: [{ticks: { min: 0}}]
+  }
 };
 
 const Difference = props => <Bar data={createData(props.data)} options={options}/>;

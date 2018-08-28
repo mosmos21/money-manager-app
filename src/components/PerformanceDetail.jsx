@@ -40,7 +40,12 @@ const options = {
   },
   scales: {
     xAxes: [{stacked: true}],
-    yAxes: [{stacked: true}]
+    yAxes: [{
+      stacked: true,
+      ticks: {
+        min: 0
+      }
+    }]
   }
 };
 
