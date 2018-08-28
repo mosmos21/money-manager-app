@@ -18,26 +18,31 @@ const BudgetForm = props => {
         { year }年 { month }月の予算を設定します
       </Typography>
       <TextField
+        type="number"
         name="foodInput"
         label="食費"
         onChange={handleInput}
         margin="normal" />
       <TextField
+        type="number"
         name="sundryInput"
         label="雑費"
         onChange={handleInput}
         margin="normal" />
       <TextField
+        type="number"
         name="relationshipInput"
         label="交際費"
         onChange={handleInput}
         margin="normal" />
       <TextField
+        type="number"
         name="entertainmentInput"
         label="娯楽費"
         onChange={handleInput}
         margin="normal" />
       <TextField
+        type="number"
         name="otherInput"
         label="その他"
         onChange={handleInput}
