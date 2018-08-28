@@ -1,8 +1,9 @@
 import React from 'react';
 import {Bar} from 'react-chartjs-2';
 
-const data = {
-  labels: [ '食費', '雑費', '交際費', '娯楽費', 'その他' ],
+const keys = ['food', 'sundry', 'relationship', 'entertainment', 'other'];
+const createData = data => ({
+  labels: ['食費', '雑費', '交際費', '娯楽費', 'その他'],
   datasets: [
     {
       label: '予算',
@@ -11,7 +12,7 @@ const data = {
       borderWidth: 1,
       hoverBackgroundColor: '#74b9ff',
       hoverBorderColor: '#0984e3',
-      data: [ 10000, 20000, 15000, 25000, 5000 ]
+      data: keys.map(key => data['budget'][key])
     },
     {
       label: '実績',
@@ -20,10 +21,13 @@ const data = {
       borderWidth: 1,
       hoverBackgroundColor: '#ff7675',
       hoverBorderColor: '#d63031',
-      data: [ 9000, 15000, 16000, 20000, 3000 ]
+      data: keys.map(key => data['performances']
+        .filter(d => d.category === key)
+        .map(d => d.performance)
+        .reduce((sum, d) => sum + d, 0))
     },
   ]
-};
+});
 
 const options = {
   title: {
@@ -33,5 +37,5 @@ const options = {
   },
 };
 
-const Difference = () => <Bar data={data} options={options}/>;
+const Difference = props => <Bar data={createData(props.data)} options={options}/>;
 export default Difference;

@@ -40,17 +40,21 @@ const Overview = props => {
       </Grid>
       <Grid item lg={6}>
         <Paper className={classes.paper}>
-          <PerformanceRatio/>
+          <PerformanceRatio data={data['performances']}/>
         </Paper>
       </Grid>
       <Grid item lg={6}>
         <Paper className={classes.paper}>
-          <Difference/>
+          <Difference data={data}/>
         </Paper>
       </Grid>
       <Grid item lg={6}>
         <Paper className={classes.paper}>
-          <PerformanceDetail handleClick={handleClick}/>
+          <PerformanceDetail
+            year={year}
+            month={month}
+            data={data['performances']}
+            handleClick={handleClick}/>
         </Paper>
       </Grid>
     </Grid>

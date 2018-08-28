@@ -18,7 +18,7 @@ const Header = props => {
       <AppBar position="static" color="default">
         <ToolBar>
           <Typography valiant="title" color="inherit">
-            お小遣い管理アプリケーション
+            Money Manager App
           </Typography>
         </ToolBar>
       </AppBar>

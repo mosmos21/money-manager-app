@@ -1,10 +1,10 @@
 import React from 'react';
 import Header from "../components/Header";
-import './MoneyManagerApp.css';
-import OverViewSelector from "../components/OverviewSelector";
 import BudgetForm from "../components/BudgetForm";
 import PerformanceForm from "../components/PerformanceForm";
 import Overview from "../components/Overview";
+
+import './MoneyManagerApp.css';
 
 export default class MoneyManagerApp extends React.Component {
   constructor(props) {
@@ -27,7 +27,7 @@ export default class MoneyManagerApp extends React.Component {
 
       data: {
         // 検証用
-        "201808" : {
+        "201808": {
           'budget': {
             'food': 30000,
             'sundry': 5000,
@@ -35,7 +35,14 @@ export default class MoneyManagerApp extends React.Component {
             'entertainment': 30000,
             'other': 15000,
           },
-          'performances': []
+          'performances': [
+            {'date': '2018/08/01', 'category': 'food', 'performance': 1000},
+            {'date': '2018/08/02', 'category': 'food', 'performance': 2000},
+            {'date': '2018/08/02', 'category': 'sundry', 'performance': 2000},
+            {'date': '2018/08/03', 'category': 'relationship', 'performance': 1500},
+            {'date': '2018/08/04', 'category': 'entertainment', 'performance': 2200},
+            {'date': '2018/08/05', 'category': 'other', 'performance': 500},
+          ]
         }
       },
     };
@@ -45,7 +52,7 @@ export default class MoneyManagerApp extends React.Component {
     this.setBudget = this.setBudget.bind(this);
     this.addPerformance = this.addPerformance.bind(this);
   }
-  
+
   getKey() {
     return `${this.state.year}${('0' + this.state.month).slice(-2)}`;
   }
@@ -56,11 +63,11 @@ export default class MoneyManagerApp extends React.Component {
   }
 
   handleInput(e) {
-    this.setState({ [e.target.name] : e.target.value });
+    this.setState({[e.target.name]: e.target.value});
   }
 
   handleSelectDate(date) {
-    this.setState({ dateInput: date.format('YYYY/MM/DD')});
+    this.setState({dateInput: date.format('YYYY/MM/DD')});
   }
 
   handleClick(e) {
@@ -72,7 +79,7 @@ export default class MoneyManagerApp extends React.Component {
     this.setState(prevState => ({
       data: {
         ...prevState.data,
-        [key] : {
+        [key]: {
           'budget': {
             'food': this.state.foodInput,
             'sundry': this.state.sundryInput,
@@ -94,19 +101,19 @@ export default class MoneyManagerApp extends React.Component {
   addPerformance() {
     const key = this.getKey();
     this.setState(prevState => ({
-      data : {
-        [key] : {
-          'budget' : {
+      data: {
+        [key]: {
+          'budget': {
             ...prevState.data[key]['budget'],
           },
           'performances': prevState.data[key]['performances'].concat({
             'date': this.state.dateInput,
-            'category' : this.state.categoryInput,
+            'category': this.state.categoryInput,
             'performance': Number(this.state.performanceInput)
           })
         }
       },
-      dateInput : '',
+      dateInput: '',
       categoryInput: '',
       performanceInput: 0
     }));
@@ -118,12 +125,12 @@ export default class MoneyManagerApp extends React.Component {
         <Header/>
         <div className="container">
           <div className="sideBar">
-            { this.isSetBudget() ?
+            {this.isSetBudget() ?
               <BudgetForm
                 year={this.state.year}
                 month={this.state.month}
                 handleInput={this.handleInput}
-                setBudget={this.setBudget} /> :
+                setBudget={this.setBudget}/> :
               <PerformanceForm
                 year={this.state.year}
                 month={this.state.month}
@@ -132,7 +139,7 @@ export default class MoneyManagerApp extends React.Component {
                 performanceInput={this.state.performanceInput}
                 handleInput={this.handleInput}
                 handleSelectDate={this.handleSelectDate}
-                addPerformance={this.addPerformance} /> }
+                addPerformance={this.addPerformance}/>}
           </div>
           <div className="overview">
             <div className="overviewContent">
@@ -140,8 +147,7 @@ export default class MoneyManagerApp extends React.Component {
                 year={this.state.year}
                 month={this.state.month}
                 data={this.state.data[this.getKey()]}
-
-              />
+                handleClick={this.handleClick}/>
             </div>
           </div>
         </div>

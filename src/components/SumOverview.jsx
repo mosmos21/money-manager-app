@@ -5,6 +5,9 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
+  title : {
+    fontSize: 22,
+  },
   paper: {
     padding: theme.spacing.unit * 2,
     textAlign: 'center',
@@ -18,9 +21,8 @@ const SumOverview = props => {
     <Grid container spacing={8}>
       <Grid item xs={6}>
         <Paper className={classes.paper}>
-          <Typography valiant="title" color="inherit">
-            {year}年<br/>
-            {month}月
+          <Typography valiant="title" color="inherit" className={classes.title}>
+            {year}年{month}月
           </Typography>
         </Paper>
       </Grid>

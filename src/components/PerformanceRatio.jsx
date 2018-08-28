@@ -1,14 +1,18 @@
 import React from 'react';
 import {Doughnut} from 'react-chartjs-2';
 
-const data = {
+const keys = ['food', 'sundry', 'relationship', 'entertainment', 'other'];
+const createData = data => ({
   labels: [ '食費', '雑費', '交際費', '娯楽費', 'その他' ],
   datasets: [{
-    data: [100, 200, 300, 400, 500],
+    data: keys.map(key => data
+      .filter(d => d.category === key)
+      .map(d => d.performance)
+      .reduce((sum, d) => sum + d, 0)),
     backgroundColor: [ '#ff7675', '#55efc4', '#74b9ff', '#ffeaa7', '#b2bec3' ],
     hoverBackgroundColor: [ '#d63031', '#00b894', '#0984e3', '#fdcb6e', '#b2bec3' ],
   }]
-};
+});
 
 const options ={
   title: {
@@ -18,5 +22,5 @@ const options ={
   },
 };
 
-const PerformanceRatio = () => <Doughnut data={data} options={options} height={110} />;
+const PerformanceRatio = props => <Doughnut data={createData(props.data)} options={options} height={110}/>;
 export default PerformanceRatio;
