@@ -8,6 +8,9 @@ import Difference from "./Difference";
 import PerformanceDetail from "./PerformanceDetail";
 
 const styles = theme => ({
+  root: {
+    flexGrow: 1,
+  },
   grid: {
     height: '45%'
   },
@@ -24,8 +27,8 @@ const getPerformanceSum = data => data.map(val => val['performance']).reduce((su
 const Overview = props => {
   const {classes, year, month, data, handleClick} = props;
   return (
-    <Grid container spacing={24}>
-      <Grid item xs={6}>
+    <Grid container spacing={24} className={classes.root}>
+      <Grid item lg={6}>
         <Paper className={classes.paper}>
           <SumOverview
             year={year}
@@ -35,17 +38,17 @@ const Overview = props => {
           />
         </Paper>
       </Grid>
-      <Grid item xs={6}>
+      <Grid item lg={6}>
         <Paper className={classes.paper}>
           <PerformanceRatio/>
         </Paper>
       </Grid>
-      <Grid item xs={6}>
+      <Grid item lg={6}>
         <Paper className={classes.paper}>
           <Difference/>
         </Paper>
       </Grid>
-      <Grid item xs={6}>
+      <Grid item lg={6}>
         <Paper className={classes.paper}>
           <PerformanceDetail handleClick={handleClick}/>
         </Paper>

@@ -135,9 +135,6 @@ export default class MoneyManagerApp extends React.Component {
                 addPerformance={this.addPerformance} /> }
           </div>
           <div className="overview">
-            <div className="overviewHeader">
-              <OverViewSelector year={this.state.year} month={this.state.month} />
-            </div>
             <div className="overviewContent">
               <Overview
                 year={this.state.year}

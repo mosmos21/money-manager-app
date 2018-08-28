@@ -22,17 +22,17 @@
     float: left;
     height: calc(100% - 40px);
     width: calc(100% - 360px);
-    padding: 20px;
-}
-
-.overviewHeader {
-    width: 100%;
-    height: 50px;
-    margin: 0;
-    padding: 0;
+    padding: 20px 0 0 20px;
 }
 
 .overviewContent {
-    width: 100%;
-    height: calc(100% - 80px);
+    margin: 0;
+    width: calc(100% - 40px);
+    height: 100%;
+    overflow: scroll;
+    padding: 0 20px;
+}
+
+.overviewContent::-webkit-scrollbar {
+    display: none;
 }

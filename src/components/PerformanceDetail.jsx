@@ -1,7 +1,7 @@
 import React from 'react';
 import {Bar} from 'react-chartjs-2';
 
-const getArray = () => Array.from(Array(30), () => Math.floor(Math.random() * Math.floor(2000)) + 500);
+const getArray = () => Array.from(Array(31), () => Math.floor(Math.random() * Math.floor(700)) + 300);
 
 const data = {
   labels: Array.from(Array(31), (v, k) => k + 1),
