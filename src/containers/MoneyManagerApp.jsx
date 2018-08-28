@@ -6,6 +6,19 @@ import Overview from "../components/Overview";
 
 import './MoneyManagerApp.css';
 
+const generateDemoData = () => {
+  const randomInt = max => Math.floor(Math.random() * Math.floor(max));
+  const categories = ['food', 'sundry', 'relationship', 'entertainment', 'other'];
+  let arr = [], sum = 0;
+  while(sum <= 100000) {
+    const perf = randomInt(1900) + 100;
+    const date = ('0' + (randomInt(31) + 1)).slice(-2);
+    sum += perf;
+    arr.push({'date': `2018/08/${date}`, 'category': categories[randomInt(5)], 'performance': perf });
+  }
+  return arr;
+};
+
 export default class MoneyManagerApp extends React.Component {
   constructor(props) {
     super(props);
@@ -35,14 +48,7 @@ export default class MoneyManagerApp extends React.Component {
             'entertainment': 30000,
             'other': 15000,
           },
-          'performances': [
-            {'date': '2018/08/01', 'category': 'food', 'performance': 1000},
-            {'date': '2018/08/02', 'category': 'food', 'performance': 2000},
-            {'date': '2018/08/02', 'category': 'sundry', 'performance': 2000},
-            {'date': '2018/08/03', 'category': 'relationship', 'performance': 1500},
-            {'date': '2018/08/04', 'category': 'entertainment', 'performance': 2200},
-            {'date': '2018/08/05', 'category': 'other', 'performance': 500},
-          ]
+          'performances': generateDemoData()
         }
       },
     };
