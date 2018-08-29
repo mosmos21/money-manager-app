@@ -51,6 +51,6 @@ const options = {
 
 const PerformanceDetail = props => {
   const {year, month, data, handleClick} = props;
-  return <Bar data={createData(year, month, data)} options={options} onClick={handleClick}/>;
+  return <Bar data={createData(year, month, data)} options={options} onElementsClick={handleClick} />;
 };
 export default PerformanceDetail;

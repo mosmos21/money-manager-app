@@ -10,11 +10,11 @@ const generateDemoData = () => {
   const randomInt = max => Math.floor(Math.random() * Math.floor(max));
   const categories = ['food', 'sundry', 'relationship', 'entertainment', 'other'];
   let arr = [], sum = 0;
-  while(sum <= 100000) {
+  while (sum <= 100000) {
     const perf = randomInt(1900) + 100;
     const date = ('0' + (randomInt(31) + 1)).slice(-2);
     sum += perf;
-    arr.push({'date': `2018/08/${date}`, 'category': categories[randomInt(5)], 'performance': perf });
+    arr.push({'date': `2018/08/${date}`, 'category': categories[randomInt(5)], 'performance': perf});
   }
   return arr;
 };
@@ -37,6 +37,10 @@ export default class MoneyManagerApp extends React.Component {
       // 選択中の年月
       year: 2018,
       month: 8,
+
+      // モーダル用
+      open: false,
+      date: 0,
 
       data: {
         // 検証用
@@ -77,7 +81,8 @@ export default class MoneyManagerApp extends React.Component {
   }
 
   handleClick(e) {
-    console.log(e);
+    if (e.length === 0) return;
+    this.setState({open: true, date: e[0]._index + 1});
   }
 
   setBudget() {
