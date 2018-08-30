@@ -1,5 +1,5 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import {withStyles} from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -11,43 +11,43 @@ const styles = {
 };
 
 const BudgetForm = props => {
-  const { classes, year, month, handleInput, setBudget } = props;
+  const {classes, year, month, handleInput, setBudget} = props;
   return (
     <div>
       <Typography className={classes.title} color="textSecondary">
-        { year }年 { month }月の予算を設定します
+        {year}年 {month}月の予算を設定します
       </Typography>
       <TextField
         type="number"
         name="foodInput"
         label="食費"
         onChange={handleInput}
-        margin="normal" />
+        margin="normal"/>
       <TextField
         type="number"
         name="sundryInput"
         label="雑費"
         onChange={handleInput}
-        margin="normal" />
+        margin="normal"/>
       <TextField
         type="number"
         name="relationshipInput"
         label="交際費"
         onChange={handleInput}
-        margin="normal" />
+        margin="normal"/>
       <TextField
         type="number"
         name="entertainmentInput"
         label="娯楽費"
         onChange={handleInput}
-        margin="normal" />
+        margin="normal"/>
       <TextField
         type="number"
         name="otherInput"
         label="その他"
         onChange={handleInput}
-        margin="normal" />
-      <Button variant="contained" color="primary" onClick={ () => setBudget() }>
+        margin="normal"/>
+      <Button variant="contained" color="primary" onClick={() => setBudget()}>
         予算を登録する
       </Button>
     </div>

@@ -5,6 +5,7 @@ import PerformanceForm from "../components/PerformanceForm";
 import Overview from "../components/Overview";
 
 import './MoneyManagerApp.css';
+import PerformanceDetailList from "../components/PerformanceDetailList";
 
 const generateDemoData = () => {
   const randomInt = max => Math.floor(Math.random() * Math.floor(max));
@@ -53,11 +54,13 @@ export default class MoneyManagerApp extends React.Component {
       open: false,
       date: 0,
 
-      data: {} //generateDemoData()
+      data: generateDemoData(),
+      // data: [],
     };
     this.handleInput = this.handleInput.bind(this);
     this.handleSelectDate = this.handleSelectDate.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleClose = this.handleClose.bind(this);
     this.setBudget = this.setBudget.bind(this);
     this.addPerformance = this.addPerformance.bind(this);
   }
@@ -82,6 +85,10 @@ export default class MoneyManagerApp extends React.Component {
   handleClick(e) {
     if (e.length === 0) return;
     this.setState({open: true, date: e[0]._index + 1});
+  }
+  
+  handleClose() {
+    this.setState({open: false});
   }
 
   setBudget() {
@@ -161,6 +168,14 @@ export default class MoneyManagerApp extends React.Component {
             </div>
           </div>
         </div>
+        <PerformanceDetailList
+          year={this.state.year}
+          month={this.state.month}
+          date={this.state.date}
+          open={this.state.open}
+          data={this.state.data[this.getKey()]}
+          handleClose={this.handleClose}
+        />
       </React.Fragment>
     );
   }
