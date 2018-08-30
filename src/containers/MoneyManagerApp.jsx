@@ -16,7 +16,18 @@ const generateDemoData = () => {
     sum += perf;
     arr.push({'date': `2018/08/${date}`, 'category': categories[randomInt(5)], 'performance': perf});
   }
-  return arr;
+  return {
+    '201808': {
+      'budget': {
+        'food': 30000,
+        'sundry': 5000,
+        'relationship': 20000,
+        'entertainment': 30000,
+        'other': 15000,
+      },
+      'performances': arr
+    }
+  }
 };
 
 export default class MoneyManagerApp extends React.Component {
@@ -42,19 +53,7 @@ export default class MoneyManagerApp extends React.Component {
       open: false,
       date: 0,
 
-      data: {
-        // 検証用
-        "201808": {
-          'budget': {
-            'food': 30000,
-            'sundry': 5000,
-            'relationship': 20000,
-            'entertainment': 30000,
-            'other': 15000,
-          },
-          'performances': generateDemoData()
-        }
-      },
+      data: {} //generateDemoData()
     };
     this.handleInput = this.handleInput.bind(this);
     this.handleSelectDate = this.handleSelectDate.bind(this);
@@ -92,11 +91,11 @@ export default class MoneyManagerApp extends React.Component {
         ...prevState.data,
         [key]: {
           'budget': {
-            'food': this.state.foodInput,
-            'sundry': this.state.sundryInput,
-            'relationship': this.state.relationshipInput,
-            'entertainment': this.state.entertainmentInput,
-            'other': this.state.otherInput,
+            'food': Number(this.state.foodInput),
+            'sundry': Number(this.state.sundryInput),
+            'relationship': Number(this.state.relationshipInput),
+            'entertainment': Number(this.state.entertainmentInput),
+            'other': Number(this.state.otherInput),
           },
           'performances': []
         },

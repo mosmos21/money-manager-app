@@ -5,7 +5,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
-  title : {
+  title: {
     fontSize: 22,
   },
   paper: {
@@ -16,7 +16,7 @@ const styles = theme => ({
 });
 
 const SumOverview = props => {
-  const { classes, year, month, budgetSum, performanceSum} = props;
+  const {classes, year, month, budgetSum, performanceSum} = props;
   return (
     <Grid container spacing={8}>
       <Grid item xs={6}>
@@ -31,7 +31,7 @@ const SumOverview = props => {
           <Typography valiant="title" color="inherit">
             予実の差
           </Typography>
-          {budgetSum - performanceSum}円
+          {budgetSum ? `${budgetSum - performanceSum}円` : '[予算が登録されていません]'}
         </Paper>
       </Grid>
       <Grid item xs={6}>
@@ -39,7 +39,7 @@ const SumOverview = props => {
           <Typography valiant="title" color="inherit">
             予算額
           </Typography>
-          {budgetSum}円
+          {budgetSum ? `${budgetSum}円` : '[予算が登録されていません]'}
         </Paper>
       </Grid>
       <Grid item xs={6}>
@@ -47,7 +47,7 @@ const SumOverview = props => {
           <Typography valiant="title" color="inherit">
             実績額
           </Typography>
-          {performanceSum}円
+          {budgetSum ? `${performanceSum}円` : '[予算が登録されていません]'}
         </Paper>
       </Grid>
     </Grid>

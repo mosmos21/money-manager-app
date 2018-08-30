@@ -33,14 +33,14 @@ const Overview = props => {
           <SumOverview
             year={year}
             month={month}
-            budgetSum={getBudgetSum(data['budget'])}
-            performanceSum={getPerformanceSum(data['performances'])}
+            budgetSum={data ? getBudgetSum(data['budget']) : undefined}
+            performanceSum={data ? getPerformanceSum(data['performances']) : 0}
           />
         </Paper>
       </Grid>
       <Grid item lg={6}>
         <Paper className={classes.paper}>
-          <PerformanceRatio data={data['performances']}/>
+          <PerformanceRatio data={data ? data['performances'] : undefined}/>
         </Paper>
       </Grid>
       <Grid item lg={6}>
@@ -53,7 +53,7 @@ const Overview = props => {
           <PerformanceDetail
             year={year}
             month={month}
-            data={data['performances']}
+            data={data ? data['performances'] : undefined}
             handleClick={handleClick}/>
         </Paper>
       </Grid>

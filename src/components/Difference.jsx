@@ -21,7 +21,7 @@ const createData = data => ({
       borderWidth: 1,
       hoverBackgroundColor: '#ff7675',
       hoverBorderColor: '#d63031',
-      data: keys.map(key => data['performances']
+      data: keys.map(key => (data['performances'] ?  data['performances'] : [])
         .filter(d => d.category === key)
         .map(d => d.performance)
         .reduce((sum, d) => sum + d, 0))
@@ -40,5 +40,8 @@ const options = {
   }
 };
 
-const Difference = props => <Bar data={createData(props.data)} options={options}/>;
+const Difference = props =>
+    props.data ?
+        <Bar data={createData(props.data)} options={options}/> :
+        <div>[予算が登録されていません]</div>;
 export default Difference;
