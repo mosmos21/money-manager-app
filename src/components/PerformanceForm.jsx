@@ -14,6 +14,9 @@ import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 
 const styles = theme => ({
+  root: {
+    padding: 25
+  },
   title: {
     fontSize: 20
   },
@@ -27,7 +30,7 @@ const PerformanceForm = props => {
   const minDate = moment({year: year, month: month - 1, date: 1});
   const maxDate = moment({year: year + month / 12, month: month % 12, date: 1}).subtract(1, 'd');
   return (
-    <div>
+    <div className={classes.root}>
       <Typography className={classes.title}>
         実績の入力
       </Typography>

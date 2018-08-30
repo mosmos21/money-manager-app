@@ -5,6 +5,9 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
 const styles = {
+  root: {
+    padding: 25
+  },
   title: {
     fontSize: 20
   }
@@ -13,7 +16,7 @@ const styles = {
 const BudgetForm = props => {
   const {classes, year, month, handleInput, setBudget} = props;
   return (
-    <div>
+    <div className={classes.root}>
       <Typography className={classes.title} color="textSecondary">
         {year}年 {month}月の予算を設定します
       </Typography>
