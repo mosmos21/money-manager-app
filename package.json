@@ -5,6 +5,8 @@
   "dependencies": {
     "@material-ui/core": "^1.5.1",
     "chart.js": "^2.7.2",
+    "classnames": "^2.2.6",
+    "fg-loadcss": "^2.0.1",
     "moment": "^2.22.2",
     "prop-types": "^15.6.2",
     "react": "^16.4.2",

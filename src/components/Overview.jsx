@@ -11,10 +11,8 @@ const styles = theme => ({
   root: {
     flexGrow: 1,
   },
-  grid: {
-    height: '45%'
-  },
   paper: {
+    height: '19vw',
     padding: theme.spacing.unit * 2,
     textAlign: 'center',
     color: theme.palette.text.secondary,
@@ -25,7 +23,7 @@ const getBudgetSum = data => Object.values(data).reduce((sum, val) => sum + val,
 const getPerformanceSum = data => data.map(val => val['performance']).reduce((sum, val) => sum + val, 0);
 
 const Overview = props => {
-  const {classes, year, month, data, handleClick} = props;
+  const {classes, year, month, data, moveMonth, handleClick} = props;
   return (
     <Grid container spacing={24} className={classes.root}>
       <Grid item lg={6}>
@@ -33,6 +31,7 @@ const Overview = props => {
           <SumOverview
             year={year}
             month={month}
+            moveMonth={moveMonth}
             budgetSum={data ? getBudgetSum(data['budget']) : undefined}
             performanceSum={data ? getPerformanceSum(data['performances']) : 0}
           />

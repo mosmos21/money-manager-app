@@ -24,6 +24,6 @@ const options ={
 
 const PerformanceRatio = props =>
     !props.data || props.data.length === 0 ?
-        <div>[実績が未登録です]</div> :
-        <Doughnut data={createData(props.data)} options={options} height={110}/>;
+        <div>[実績未登録]</div> :
+        <Doughnut data={createData(props.data)} options={options} />;
 export default PerformanceRatio;

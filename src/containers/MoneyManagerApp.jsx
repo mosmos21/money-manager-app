@@ -7,18 +7,19 @@ import Overview from "../components/Overview";
 import './MoneyManagerApp.css';
 import PerformanceDetailList from "../components/PerformanceDetailList";
 
-const generateDemoData = () => {
+const generateDemoData = (year, month) => {
   const randomInt = max => Math.floor(Math.random() * Math.floor(max));
   const categories = ['food', 'sundry', 'relationship', 'entertainment', 'other'];
+  const key = `${year}${('0' + month).slice(-2)}`;
   let arr = [], sum = 0;
-  while (sum <= 100000) {
+  while (sum <= 90000) {
     const perf = randomInt(1900) + 100;
     const date = ('0' + (randomInt(31) + 1)).slice(-2);
     sum += perf;
-    arr.push({'date': `2018/08/${date}`, 'category': categories[randomInt(5)], 'performance': perf});
+    arr.push({'date': `${year}/${('0' + month).slice(-2)}/${date}`, 'category': categories[randomInt(5)], 'performance': perf});
   }
   return {
-    '201808': {
+    [key]: {
       'budget': {
         'food': 30000,
         'sundry': 5000,
@@ -54,8 +55,7 @@ export default class MoneyManagerApp extends React.Component {
       open: false,
       date: 0,
 
-      data: generateDemoData(),
-      // data: [],
+      data: {},
     };
     this.handleInput = this.handleInput.bind(this);
     this.handleSelectDate = this.handleSelectDate.bind(this);
@@ -63,6 +63,9 @@ export default class MoneyManagerApp extends React.Component {
     this.handleClose = this.handleClose.bind(this);
     this.setBudget = this.setBudget.bind(this);
     this.addPerformance = this.addPerformance.bind(this);
+    this.reset = this.reset.bind(this);
+    this.setDemoData = this.setDemoData.bind(this);
+    this.moveMonth = this.moveMonth.bind(this);
   }
 
   getKey() {
@@ -89,6 +92,19 @@ export default class MoneyManagerApp extends React.Component {
   
   handleClose() {
     this.setState({open: false});
+  }
+
+  reset() {
+    this.setState({data: {}});
+  }
+
+  setDemoData() {
+    this.setState(prevState => ({
+      data: {
+        ...prevState.data,
+        ...generateDemoData(this.state.year, this.state.month),
+      }
+    }));
   }
 
   setBudget() {
@@ -136,10 +152,22 @@ export default class MoneyManagerApp extends React.Component {
     }));
   }
 
+  moveMonth(num) {
+    let year = this.state.year;
+    let month = this.state.month + num;
+    if(month === 0) {
+      year--; month = 12;
+    }
+    if(month === 13) {
+      year++; month = 1;
+    }
+    this.setState({year: year, month: month});
+  }
+
   render() {
     return (
       <React.Fragment>
-        <Header/>
+        <Header reset={this.reset} setDemoData={this.setDemoData}/>
         <div className="container">
           <div className="sideBar">
             {this.isSetBudget() ?
@@ -164,6 +192,7 @@ export default class MoneyManagerApp extends React.Component {
                 year={this.state.year}
                 month={this.state.month}
                 data={this.state.data[this.getKey()]}
+                moveMonth={this.moveMonth}
                 handleClick={this.handleClick}/>
             </div>
           </div>

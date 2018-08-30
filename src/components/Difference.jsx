@@ -43,5 +43,5 @@ const options = {
 const Difference = props =>
     props.data ?
         <Bar data={createData(props.data)} options={options}/> :
-        <div>[予算が登録されていません]</div>;
+        <div>[予算未登録]</div>;
 export default Difference;

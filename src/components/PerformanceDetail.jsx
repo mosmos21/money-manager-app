@@ -52,7 +52,7 @@ const options = {
 const PerformanceDetail = props => {
   const {year, month, data, handleClick} = props;
   return !data || data.length === 0 ?
-      <div>[実績が登録されていません]</div> :
+      <div>[実績未登録]</div> :
       <Bar data={createData(year, month, data)} options={options} onElementsClick={handleClick} />;
 };
 export default PerformanceDetail;

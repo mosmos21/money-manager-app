@@ -22,6 +22,10 @@ const styles = theme => ({
   table: {
     width: theme.spacing.unit * 50,
   },
+  container: {
+    height: theme.spacing.unit * 30,
+    overflow: 'auto',
+  }
 });
 
 const getData = (year, month, date, data) => {
@@ -40,20 +44,22 @@ const PerformanceDetailList = props => {
         <Typography variant="title" id="modal-title">
           {year}/{month}/{date} 実績詳細
         </Typography>
-        <Table className={classes.table}>
-          <TableHead>
-            <TableCell>カテゴリ</TableCell>
-            <TableCell>実績額</TableCell>
-          </TableHead>
-          <TableBody>
-            {getData(year, month, date, data['performances']).map(row =>
-              <TableRow key={row.id}>
-                <TableCell>{categoryValues[row.category]}</TableCell>
-                <TableCell numeric>{row.performance}円</TableCell>
-              </TableRow>
-            )}
-          </TableBody>
-        </Table>
+        <div className={classes.container}>
+          <Table className={classes.table}>
+            <TableHead>
+              <TableCell>カテゴリ</TableCell>
+              <TableCell>実績額</TableCell>
+            </TableHead>
+            <TableBody>
+              {data ? getData(year, month, date, data['performances']).map(row =>
+                <TableRow key={row.id}>
+                  <TableCell>{categoryValues[row.category]}</TableCell>
+                  <TableCell numeric>{row.performance}円</TableCell>
+                </TableRow>
+              ) : <TableRow/>}
+            </TableBody>
+          </Table>
+        </div>
       </Paper>
     </Modal>
   );
