@@ -10,7 +10,7 @@ import blue from '@material-ui/core/colors/blue';
 
 const styles = theme => ({
   title: {
-    fontSize: '1em',
+    fontSize: 20,
   },
   paper: {
     padding: theme.spacing.unit * 2,
